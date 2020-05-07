@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guet.sportsgebe.dao.ImageDao">
+
+    <resultMap type="com.guet.sportsgebe.entity.Image" id="ImageMap">
+        <result property="imageid" column="ImageId" jdbcType="VARCHAR"/>
+        <result property="imagename" column="ImageName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ImageMap">
+        select
+          ImageId, ImageName
+        from final.image
+        where ImageId = #{imageid}
+    </select>
+
+    <!--模糊查询-->
+    <select id="queryAllByLike" resultMap="ImageMap">
+        select
+          ImageId, ImageName
+        from final.image
+        where ImageName like concat('%', #{imagename}, '%')
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ImageMap">
+        select
+          ImageId, ImageName
+        from final.image
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ImageMap">
+        select
+          ImageId, ImageName
+        from final.image
+        <where>
+            <if test="imageid != null and imageid != ''">
+                and ImageId = #{imageid}
+            </if>
+            <if test="imagename != null and imagename != ''">
+                and ImageName = #{imagename}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into final.image(ImageId,ImageName)
+        values (#{imageid},#{imagename})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update final.image
+        <set>
+            <if test="imagename != null and imagename != ''">
+                ImageName = #{imagename},
+            </if>
+        </set>
+        where ImageId = #{imageid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from final.image where ImageId = #{imageid}
+    </delete>
+
+    <delete id="deleteByLikeName">
+        delete from final.image where ImageName != CONCAT(#{imagename}, '-ASI.jpg') and ImageName LIKE concat('%', #{imagename}, '%')
+    </delete>
+
+    <select id="selectNameTest" resultMap="ImageMap">
+        select
+        *
+        from final.image
+        where ImageName != CONCAT(#{imagename}, '-ASI.jpg') and ImageName LIKE concat('%', #{imagename}, '%')
+    </select>
+
+</mapper>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <link href="../css/templatemo_style.css" rel="stylesheet" type="text/css" />
+    <!-- Custom Theme files -->
+    <link href="../css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="../css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+    <!-- //online-fonts -->
+
+</head>
+<body>
+<!-- banner -->
+<div class="inner-banner">
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary pt-3">
+            <h1>
+                <a class="navbar-brand text-white" href="../Users/user">
+                    GebeSports
+                </a>
+            </h1>
+            <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-lg-auto text-center">
+                    <li class="nav-item active  mr-3 mt-lg-0 mt-3">
+                        <a class="nav-link" href="../Users/user">首页
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                        <a class="nav-link" href="../Users/GoAbout">关于这里</a>
+                    </li>
+                    <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                        <a class="nav-link" href="../Users/GoServices">服务</a>
+                    </li>
+                    <li class="nav-item dropdown mr-3 mt-lg-0 mt-3">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            图文展示
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="../Users/GoArticle">文章</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../Users/GoBlog">日志</a>
+                        </div>
+                    </li>
+                    <li class="nav-item  mr-3 mt-lg-0 mt-3" id="register">
+                        <a id="UserName" class="nav-link" href="../Users/GoRegister">注册</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //header -->
+
+</div>
+<!-- //banner-text -->
+
+<div id="templatemo_main_wrapper">
+    <div id="templatemo_content_wrapper">
+
+        <div id="templatemo_content">
+
+            <div class="post_section" id="TopAct">
+                <input type="hidden" name="TopActId" id="TopActId" value="">
+                <span class="comment"><a href="#">置顶活动</a></span>
+
+                <h2><a href="#" id="ActName">Aliquam lorem ante dapibus</a></h2>
+                
+                <strong>Activity Start Date: </strong>
+                <span id="ActStrattime">2020-04-19</span>
+                <span> | </span>
+                <strong>Author: </strong>
+                <span id="ActOriginatorname">Michael</span>
+                <strong>Spend: </strong>
+                <span id="ActSpend">￥</span>
+
+                <a href="#" id="Img">
+                    <img id="ActImg" src="../images/templatemo_image_01.jpg" alt="image 1" class="testImg"/></a>
+
+                <p id="ActIntro">
+                    provides free css templates for your  static or dynamic websites. All web templates are absolutely free to download, modify and apply for your websites without restrictions. Have fun!
+                </p>
+
+                <div class="cleaner"></div>
+                <div class="category" id="ActCategory">
+                    <span>Categorys:</span>
+                </div>
+                <div class="button float_r">
+                    <a href="javascript:void(0)" onclick="cancleOnTop()" class="more">取消置顶</a>
+                    <a href="javascript:void(0)" onclick="deleteAct()" class="more">删除活动</a>
+                </div>
+                <div class="cleaner"></div>
+            </div>
+
+        </div>
+
+        <div id="templatemo_sidebar_one">
+
+            <ul class="templatemo_list">
+                <li><img id="UserImg" src="../images/2.jpg" alt="" class="UserShowImg"/></li>
+                <li>
+                    <span class="btn btn-success fileinput-button">
+                        <span>用户头像更换</span>
+                        <input id="ChangeUserImg" type="file"/>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="cleaner_h40"></div>
+
+            <h4>关注列表</h4>
+            <ul class="templatemo_list" id="FollowList">
+
+            </ul>
+
+            <div class="cleaner_h40"></div>
+
+            <h4>Recent Posts</h4>
+            <div class="recent_comment_box">
+                <a href="../Users/TestAlipay" onclick="TestAlipay()">TestAlipay</a>
+                <p>Maecenas tellus erat, dictum vel semper a, dapibus ac elit. Nunc rutrum pretium porta.</p>
+            </div>
+
+            <div class="recent_comment_box">
+                <a href="javascript:void(0)" onclick="TestAlipay()">Aenean feugiat mattis </a>
+                <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+            </div>
+
+            <div class="recent_comment_box">
+                <a href="#"> Lacus enim id lacinia in</a>
+                <p>Curabitur ullamcorper ultricies nisi.  Nam eget dui.   Etiam rhoncus.</p>
+            </div>
+
+        </div>
+
+
+        <div class="cleaner"></div>
+
+        <script src="../js/jquery-2.2.3.min.js"></script>
+        <script src="../js/jquery.cookie.js"></script>
+            <!-- start-smooth-scrolling -->
+        <script src="../js/move-top.js"></script>
+        <script src="../js/easing.js"></script>
+        <script>
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+    
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 1000);
+                });
+            });
+        </script>
+        <script>
+            function TestAlipay(){
+                var formdata = new FormData();
+                formdata.append("Pay", 234);
+                formdata.append("UserId", "12342");
+                formdata.append("ActId", "OP1243");
+
+                var request = new XMLHttpRequest();
+                request.open("POST", "../Users/TestAlipay");
+                request.send(formdata);
+            }
+
+
+            function timestampToTime(timestamp) {
+                var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                Y = date.getFullYear() + '-';
+                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                D = date.getDate() + ' ';
+                h = date.getHours() + ':';
+                m = date.getMinutes() + ':';
+                s = date.getSeconds();
+                return Y+M+D;
+            }
+
+            function IsHot(ishot){
+                if(ishot == "yes"){
+                    return "Hot";
+                }else{
+                    return "Nomal";
+                }
+            }
+
+            function setOnTop(actId){
+                $.ajax({
+                    url:'/Users/SetOnTop',
+					data:{"ActId":actId},
+					method:'POST',
+					dataType:'text',
+					error:function(){
+						alert("无法连接服务器");
+					},
+					success:function(data){
+						window.location.href = "../Users/GoPerson";
+					}
+                })
+            }
+
+            function GetIntro(ActId){
+                $.getJSON("/Article/GetIntro?ActId=" + ActId, function(data){
+                    $("#ActIntro").html(data.articleintro);
+                })
+            }
+
+            function ActDes(json){
+                $.each(json, function (index, obj) {
+                    var div1 = $('<div class="button float_r">').append('<a href="javascript:void(0)" onclick=\'setOnTop("'+ obj.activityid.toUpperCase() +'")\' class="more">设为置顶</a><a href="javascript:void(0)" onclick="deleteAct()" class="more">删除活动</a>');
+                    var div2 = $('<div class="category">').append('<span>Categorys:</span> ');
+
+                    $.getJSON("/ActCate/GetActCategory?ActId=" + obj.activityid, function(data){
+                        $.each(data, function(i, Cate){
+                            div2.append('<a href="#">'+ Cate.catename +' </a>');
+                        })
+                    })
+
+                    var div3 = $('<div class="post_section">').append('<input type="hidden" name="ActId" value="'+ obj.activityid +'"><span class="comment"><a href="javascript:void(0)" id="IsHotList">'+ IsHot(obj.ishotlist) +'</a></span>');
+                    div3.append('<h2><a href="../Activity/GoShowAct?ActId='+ obj.activityid +'">'+ obj.actname +'</a></h2>');
+                    div3.append('<strong>Activity Start Date: </strong><span">'+ timestampToTime(obj.starttime) +'</span><span> | </span><strong>Author: </strong><span>'+ obj.originatorname +'</span><span> | </span><strong>Spend: </strong><span>'+ obj.actspend +'￥</span>');
+                    div3.append('<a href="../Activity/GoShowAct?ActId='+ obj.activityid +'"><img id="Img" src="../images/'+ obj.actShowImgName +'" alt="image 1" class="testImg"/></a>');
+
+                    $.getJSON("/Article/GetIntro?ActId=" + obj.activityid, function(data){
+                        div3.append('<p>'+ data.articleintro + '</p>')
+                    })
+
+                    div3.append('<div class="cleaner"></div>');
+                    div3.append(div2);
+                    div3.append(div1);
+                    div3.append('<div class="cleaner"></div>');
+
+                    $("#templatemo_content").append(div3);
+                })
+            }
+
+            $(window).load(function(){
+                // //取得cookie里的值，如果为空则不操作；若有值，则隐藏登录框
+                // var userName = $.cookie('userName');
+                // var userPassword = $.cookie('userPassword');
+                // if(userName != null && userPassword != null){
+                //     $.ajax({
+                //         url:'/Users/CheckLogin',
+                //         data:{"Name":userName,"Password":userPassword},
+                //         method:'POST',
+                //         dataType:'text',
+                //         error:function(){
+                //             alert("无法连接服务器");
+                //         },
+                //         success:function(data){
+                //             if(data == "LoginSuccess"){
+                //                 $("#UserName").text($.cookie('userName'));
+                //             }
+                //         }
+                //     });
+                // }                
+
+                // $.getJSON("/Activity/GetTopAct", function(json){
+                //     if(json == null){
+                //         $("#TopAct").hide();
+                //         console.log("Top Act is null");
+                //     }else{
+                //         $("#TopActId").val(json.activityid);
+                //         $("#ActName").html(json.actname);
+                //         $("#ActName").attr('href', '../Activity/GoShowAct?ActId='+json.activityid);
+                //         $("#ActStrattime").html(timestampToTime(json.starttime));
+                //         $("#ActOriginatorname").html(json.originatorname);
+                //         $("#ActSpend").html(json.actspend + " ￥");
+                //         $("#ActImg").attr('src', '../images/'+ json.actShowImgName);
+                //         $("#Img").attr('href', '../Activity/GoShowAct?ActId='+json.activityid);
+                //         GetIntro(json.activityid)
+
+                //         $.getJSON("/ActCate/GetActCategory?ActId=" + json.activityid, function(data){
+                //             $.each(data, function(i, Cate){
+                //                 $("#ActCategory").append('<a href="#">'+ Cate.catename +' </a>')
+                //             })
+                //         })
+                        
+                //     }
+                // })
+
+                // $.getJSON("/Article/GetFollowArticle", function (json) {
+                //     ActDes(json);
+                //     console.log("success!!");
+                // })
+
+                // $.get("/Users/GetUserImg", function(Img){
+                //     $("#UserImg").attr('src', '../images/' + Img);
+                // })
+
+                // $.getJSON("/Users/GetFollowList", function(json){
+                //     $.each(json, function(index, obj){
+                //         $("#FollowList").append('<li><a href="javascript:void(0)"><i onclick=\'deleteFollow("'+ obj.userid.toUpperCase() +'")\' class="fa fa-minus-circle fa-lg" aria-hidden="true"></i> <input type="button" onclick=\'GoPerson("'+ obj.userid.toUpperCase() +'")\' value="'+ obj.username +'"/></a></li>')
+                //     })
+                // })
+
+
+
+            })
+
+            var length;
+            $("#ChangeUserImg").change(function () {
+                var formdata = new FormData();
+                formdata.append('UserImg',$("#ChangeUserImg")[0].files[0]);
+                $.ajax({
+                    url:'/Users/ChangeUserImg',
+                    data: formdata,
+                    type: 'POST',
+                    dataType:"text",
+                    processData: false,
+                    contentType: false,
+                    success:(function(data) {
+                        $("#UserImg").attr('src', '../images/' + data)
+                    }),
+                    error:(function() {
+                        console.log("失败");
+                    })
+                })
+            })
+
+            function GoPerson(userId){
+                window.location.href = "../Users/GoOtherPerson?UserId=" + userId;
+            }
+
+            function deleteFollow(userId){
+                $.ajax({
+                    url:'/Users/DeleteFollow',
+                    data:{"UserId": userId},
+                    method:'POST',
+                    dataType:'text',
+                    error:function(){
+                        alert("无法连接服务器");
+                    },
+                    success:function(data){
+                        if(data == "Success"){
+                            window.location.href = "../Users/GoPerson";
+                        }
+                    }
+                })
+            }
+
+            $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+        </script>
+        
+
+</body>
+
+</html>

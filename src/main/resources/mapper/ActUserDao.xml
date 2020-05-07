@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guet.sportsgebe.dao.ActUserDao">
+
+    <resultMap type="com.guet.sportsgebe.entity.ActUser" id="ActUserMap">
+        <result property="userid" column="UserId" jdbcType="VARCHAR"/>
+        <result property="actid" column="ActId" jdbcType="VARCHAR"/>
+        <result property="enlisttime" column="EnlistTime" jdbcType="TIMESTAMP"/>
+        <result property="amountpaid" column="AmountPaid" jdbcType="NUMERIC"/>
+        <result property="attendstate" column="AttendState" jdbcType="VARCHAR"/>
+        <result property="isleader" column="IsLeader" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ActUserMap">
+        select
+          UserId, ActId, EnlistTime, AmountPaid, AttendState, IsLeader
+        from final.act_user
+        where UserId = #{userid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ActUserMap">
+        select
+          UserId, ActId, EnlistTime, AmountPaid, AttendState, IsLeader
+        from final.act_user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ActUserMap">
+        select
+          UserId, ActId, EnlistTime, AmountPaid, AttendState, IsLeader
+        from final.act_user
+        <where>
+            <if test="userid != null and userid != ''">
+                and UserId = #{userid}
+            </if>
+            <if test="actid != null and actid != ''">
+                and ActId = #{actid}
+            </if>
+            <if test="enlisttime != null">
+                and EnlistTime = #{enlisttime}
+            </if>
+            <if test="amountpaid != null">
+                and AmountPaid = #{amountpaid}
+            </if>
+            <if test="attendstate != null and attendstate != ''">
+                and AttendState = #{attendstate}
+            </if>
+            <if test="isleader != null and isleader != ''">
+                and IsLeader = #{isleader}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into final.act_user(UserId, ActId, EnlistTime, AmountPaid, AttendState, IsLeader)
+        values (#{userid}, #{actid}, #{enlisttime}, #{amountpaid}, #{attendstate}, #{isleader})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update final.act_user
+        <set>
+            <if test="enlisttime != null">
+                EnlistTime = #{enlisttime},
+            </if>
+            <if test="amountpaid != null">
+                AmountPaid = #{amountpaid},
+            </if>
+            <if test="attendstate != null and attendstate != ''">
+                AttendState = #{attendstate},
+            </if>
+            <if test="isleader != null and isleader != ''">
+                IsLeader = #{isleader},
+            </if>
+        </set>
+        where UserId = #{userid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from final.act_user where UserId = #{userid} and ActId = #{actid}
+    </delete>
+
+    <delete id="deleteByActId">
+        delete from final.act_user where ActId = #{actid}
+    </delete>
+
+</mapper>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>GEBESPORTS/CreateArticle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Custom Theme files -->
+    <link href="../css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../css/style.css" type="text/css" rel="stylesheet" media="all">
+	<!-- font-awesome icons -->
+    <link href="../css/fontawesome-all.min.css" rel="stylesheet">
+	<!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+    <!-- //online-fonts -->
+</head>
+
+<body>
+    <!-- banner -->
+    <div class="inner-banner">
+        <!-- header -->
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary pt-3">
+				<h1>
+					<a class="navbar-brand text-white" href="../Users/user">
+						GebeSports
+					</a>
+				</h1>
+				<button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-lg-auto text-center">
+						<li class="nav-item active  mr-3 mt-lg-0 mt-3">
+							<a class="nav-link" href="../Users/user">首页
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+						<li class="nav-item  mr-3 mt-lg-0 mt-3">
+							<a class="nav-link" href="../Users/GoAbout">关于这里</a>
+						</li>
+						<li class="nav-item  mr-3 mt-lg-0 mt-3">
+							<a class="nav-link" href="../Users/GoServices">服务</a>
+						</li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                            <a  class="nav-link" href="../Users/GoArticle">文章</a>
+                        </li>
+						<li class="nav-item  mr-3 mt-lg-0 mt-3" id="register">
+                            <a id="UserName" class="nav-link" href="#">注册</a>
+                        </li>
+                        <li class="nav-item  mr-3 mt-lg-0 mt-3" id="logout">
+                            <a  class="nav-link" href="../Users/Logout">注销</a>
+                        </li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+        <!-- //header -->
+        
+    </div>
+     <!-- //banner-text -->
+     
+
+
+	 	<!--/contact-->
+	<section class="contact py-lg-5">
+		<div class="container py-5">
+            <h2 class="heading-agileinfo">Create Article</h2>
+			<div class="inner-sec-w3layouts-agileinfo">				
+				<div class="contact_grid_right mt-5">
+                    <form id="submitFirst" action="#" class="contact_left_grid" onsubmit="return false">
+                        <input type="text" id="ArticleName" name="ArticleName" placeholder="文章/日志名称" required="">
+                                                
+                        <span class="btn btn-success fileinput-button">
+                            <span>图片展示选择</span>
+                            <input id="file" type="file" multiple/>
+                        </span>
+                        <!-- <input type="button" value="上传图片" id="uploadImg"> -->
+                        <div id="Img">
+                        </div>
+
+                        <h5 class="pt-4 pb-3">活动简述/导读: </h5>
+                        <textarea name="ArticleIntro" id="ArticleIntro" cols="30" rows="5" placeholder="亮点、要点描述"></textarea>
+
+                        <h5 class="pt-4 pb-3">活动描述: </h5>
+                        <textarea name="ArticleDescription" id="ArticleDescription" cols="30" rows="50" placeholder="正文"></textarea>
+                        
+                        <input type="button" value="提交" id="submitCreateAct">
+                        <input type="reset" value="重置">
+                        <div class="clearfix"> </div>
+                    </form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--//contact-->
+
+<!--footer-->
+<footer>
+	<div class="container py-md-4 mt-md-3">
+		<div class="row footer-top-w3layouts-agile py-5">
+			<div class="col-md-4 footer-grid">
+				<div class="footer-title">
+					<h3>关于 我们</h3>
+				</div>
+				<div class="footer-text">
+					<p>团队只有一人，别看了，看不出花来的</p>
+				</div>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<div class="footer-title">
+					<h3>联系我们</h3>
+				</div>
+				<div class="contact-info">
+				<h5>Location :</h5>
+				<p>USA海军陆战队预备役也不认识的地址</p>
+				<div class="phone">
+					<h5>联系方式 :</h5>
+					<p>Phone : +0773 2323232323</p>
+					<p>Email : <a href="mailto:info@example.com">shuoleniyebuzhidao@example.com</a></p>
+				</div>
+			</div>
+			</div>
+			<div class="col-md-4 footer-grid">
+				<div class="footer-title">
+					<h3>最新活动摄影</h3>
+				</div>
+				<div class="footer-list">
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g1.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g2.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g3.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g4.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g5.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g6.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g7.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g9.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="flickr-grid">
+						<a href="#" data-toggle="modal" data-target="#myModal">
+							<img src="../images/g8.jpg" class="img-fluid" alt=" ">
+						</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</footer>
+
+<!-- //footer -->
+
+
+<!-- js -->
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+<!-- //js -->
+    <!-- start-smooth-scrolling -->
+    <script src="../js/move-top.js"></script>
+    <script src="../js/easing.js"></script>
+    <script src="../js/counter.js"></script>
+
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+
+        $(window).load(function (){
+			//取得cookie里的值，如果为空则不操作；若有值，则隐藏登录框
+			var userName = $.cookie('userName');
+			var userPassword = $.cookie('userPassword');
+			if(userName != null && userPassword != null){
+				$.ajax({
+					url:'/Users/CheckLogin',
+					data:{"Name":userName,"Password":userPassword},
+					method:'POST',
+					dataType:'text',
+					error:function(){
+						alert("无法连接服务器");
+                        window.location.href = "../Users/user";
+					},
+					success:function(data){
+						if(data == "LoginSuccess"){
+							$('#UserName').attr('href','../Users/GoPerson');
+							$("#UserName").text($.cookie('userName'));
+						}else{
+                            window.location.href = "../Users/user";
+                        }
+					}
+				});
+			}
+		})
+
+        // 图片回显
+        var length;
+        $("#file").change(function () {
+            $("#Img").empty();
+            length = this.files.length;
+            console.log(length);
+            
+            var files = this.files;
+            var length = files.length;
+            //3、回显
+            $.each(files,function(key,value){
+            //每次都只会遍历一个图片数据
+            var img = document.createElement("img");
+            img.className='pic';
+            var fr = new FileReader();
+            fr.onload = function(){
+                img.src=this.result;
+                $("#Img").append(img);
+            }
+            fr.readAsDataURL(value);
+            })
+        })
+
+        function ExchangeBr(gs){
+            gs = gs.toString() .replace(/\r\n/g, '<br/>').replace(/\n/g, '<br/>').replace(/\s/g, ' ');  //转换格式
+            return gs;
+        }
+
+
+        // 提交所有内容
+        $("#submitCreateAct").click(function(){
+            var formData = new FormData();
+            formData.append('ArticleName', $("#ArticleName").val());
+
+            var arr=new Array();
+            var container;
+            var i=0;
+            for(let i=0;i<length;i++){
+                formData.append('file', $('#file')[0].files[i]);
+                console.log(formData.get("file"));
+            }
+
+            formData.append('ArticleIntro', $("#ArticleIntro").val());
+            formData.append('ArticleDescription', ExchangeBr($("#ArticleDescription").val()));
+
+            $.ajax({
+                url: '/Article/createArticle',
+                type: 'POST',
+                dataType:"text",
+                cache: false,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success:(function(data) {
+                    console.log(data);
+                    window.location.href = '../Users/GoArticle';
+                }),
+                error:(function() {
+                    alert("失败");
+                })
+            });
+        })
+
+        // 上传展示图片
+        var length;
+        $("#file").change(function () {
+            length = this.files.length;
+            console.log(length);
+        })
+
+    </script>
+    <script src="../js/SmoothScroll.min.js"></script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/bootstrap.js"></script>
+</body>
+
+</html>

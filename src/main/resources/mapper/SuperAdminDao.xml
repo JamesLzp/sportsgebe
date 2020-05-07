@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guet.sportsgebe.dao.SuperAdminDao">
+
+    <resultMap type="com.guet.sportsgebe.entity.SuperAdmin" id="SuperAdminMap">
+        <result property="sadminid" column="SAdminId" jdbcType="VARCHAR"/>
+        <result property="sadminname" column="SAdminName" jdbcType="VARCHAR"/>
+        <result property="sapassword" column="SAPassword" jdbcType="VARCHAR"/>
+        <result property="lastlogintime" column="LastLoginTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SuperAdminMap">
+        select
+          SAdminId, SAdminName, SAPassword, LastLoginTime
+        from final.super_admin
+        where SAdminId = #{sadminid}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryByName" resultMap="SuperAdminMap">
+        select
+          SAdminId, SAdminName, SAPassword, LastLoginTime
+        from final.super_admin
+        where SAdminName = #{sadminname}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SuperAdminMap">
+        select
+          SAdminId, SAdminName, SAPassword, LastLoginTime
+        from final.super_admin
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SuperAdminMap">
+        select
+          SAdminId, SAdminName, SAPassword, LastLoginTime
+        from final.super_admin
+        <where>
+            <if test="sadminid != null and sadminid != ''">
+                and SAdminId = #{sadminid}
+            </if>
+            <if test="sadminname != null and sadminname != ''">
+                and SAdminName = #{sadminname}
+            </if>
+            <if test="sapassword != null and sapassword != ''">
+                and SAPassword = #{sapassword}
+            </if>
+            <if test="lastlogintime != null">
+                and LastLoginTime = #{lastlogintime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="sadminid" useGeneratedKeys="true">
+        insert into final.super_admin(SAdminName, SAPassword, LastLoginTime)
+        values (#{sadminname}, #{sapassword}, #{lastlogintime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update final.super_admin
+        <set>
+            <if test="sadminname != null and sadminname != ''">
+                SAdminName = #{sadminname},
+            </if>
+            <if test="sapassword != null and sapassword != ''">
+                SAPassword = #{sapassword},
+            </if>
+            <if test="lastlogintime != null">
+                LastLoginTime = #{lastlogintime},
+            </if>
+        </set>
+        where SAdminId = #{sadminid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from final.super_admin where SAdminId = #{sadminid}
+    </delete>
+
+</mapper>

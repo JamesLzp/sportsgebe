@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guet.sportsgebe.dao.ActivityDao">
+
+    <resultMap type="com.guet.sportsgebe.entity.Activity" id="ActivityMap">
+        <result property="activityid" column="ActivityId" jdbcType="VARCHAR"/>
+        <result property="originatorname" column="OriginatorName" jdbcType="VARCHAR"/>
+        <result property="actname" column="ActName" jdbcType="VARCHAR"/>
+        <result property="destination" column="Destination" jdbcType="VARCHAR"/>
+        <result property="departplace" column="DepartPlace" jdbcType="VARCHAR"/>
+        <result property="starttime" column="StartTime" jdbcType="TIMESTAMP"/>
+        <result property="actdays" column="ActDays" jdbcType="INTEGER"/>
+        <result property="vehicle" column="Vehicle" jdbcType="VARCHAR"/>
+        <result property="actspend" column="ActSpend" jdbcType="NUMERIC"/>
+        <result property="ishotlist" column="IsHotList" jdbcType="VARCHAR"/>
+        <result property="actstate" column="ActState" jdbcType="VARCHAR"/>
+        <result property="expectplayer" column="ExpectPlayer" jdbcType="INTEGER"/>
+        <result property="enlistplayer" column="EnlistPlayer" jdbcType="INTEGER"/>
+        <result property="hits" column="Hits" jdbcType="INTEGER"/>
+        <result property="respond" column="Respond" jdbcType="INTEGER"/>
+        <result property="ActShowImgName" column="ActShowImgName" jdbcType="VARCHAR"/>
+        <result property="actdescriptionid" column="ActDescriptionId" jdbcType="VARCHAR"/>
+        <result property="acttripdesid" column="ActTripDesId" jdbcType="VARCHAR"/>
+        <result property="actoutfitdesid" column="ActOutfitDesId" jdbcType="VARCHAR"/>
+        <result property="actnoticeid" column="ActNoticeId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ActivityMap">
+        select
+          ActivityId, OriginatorName, ActName, Destination, DepartPlace, StartTime, ActDays, Vehicle, ActSpend, IsHotList, ActState, ExpectPlayer, EnlistPlayer, Hits, Respond, ActShowImgName, ActDescriptionId, ActTripDesId, ActOutfitDesId, ActNoticeId
+        from final.activity
+        where ActivityId = #{activityid}
+    </select>
+
+    <!--IN操作查询-->
+    <select id="queryByInIds" resultMap="ActivityMap">
+        select
+          ActivityId, OriginatorName, ActName, Destination, DepartPlace, StartTime, ActDays, Vehicle, ActSpend, IsHotList, ActState, ExpectPlayer, EnlistPlayer, Hits, Respond, ActShowImgName, ActDescriptionId, ActTripDesId, ActOutfitDesId, ActNoticeId
+        from final.activity
+        where OriginatorName IN
+        <foreach collection="list" item="originatorname" index="" open="(" close=")" separator=",">
+            #{originatorname}
+        </foreach>
+    </select>
+
+    <!--模糊查询-->
+    <select id="queryByLike" resultMap="ActivityMap">
+        select
+          distinct
+          ActivityId, OriginatorName, ActName, Destination, DepartPlace, StartTime, ActDays, Vehicle, ActSpend, IsHotList, ActState, ExpectPlayer, EnlistPlayer, Hits, Respond, ActShowImgName, ActDescriptionId, ActTripDesId, ActOutfitDesId, ActNoticeId
+        from final.activity
+        where ActName like concat('%', #{actname}, '%') or Destination like concat('%', #{destination}, '%')
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ActivityMap">
+        select
+          ActivityId, OriginatorName, ActName, Destination, DepartPlace, StartTime, ActDays, Vehicle, ActSpend, IsHotList, ActState, ExpectPlayer, EnlistPlayer, Hits, Respond, ActShowImgName, ActDescriptionId, ActTripDesId, ActOutfitDesId, ActNoticeId
+        from final.activity
+        order by StartTime DESC
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryHot4Limit" resultMap="ActivityMap">
+        select
+          ActivityId, OriginatorName, ActName, Destination, DepartPlace, StartTime, ActDays, Vehicle, ActSpend, IsHotList, ActState, ExpectPlayer, EnlistPlayer, Hits, Respond, ActShowImgName, ActDescriptionId, ActTripDesId, ActOutfitDesId, ActNoticeId
+        from final.activity
+        <where>
+            <if test="ishotlist != null and ishotlist != ''">
+                and IsHotList = #{ishotlist}
+            </if>
+        </where>
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--查询简介数据-->
+    <select id="queryAllDes" resultMap="ActivityMap">
+        select
+          ActivityId, ActName, Destination, ActDays, ActSpend, IsHotList, ActState, Hits, ActShowImgName
+        from final.activity
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ActivityMap">
+        select
+          ActivityId, OriginatorName, ActName, Destination, DepartPlace, StartTime, ActDays, Vehicle, ActSpend, IsHotList, ActState, ExpectPlayer, EnlistPlayer, Hits, Respond, ActShowImgName, ActDescriptionId, ActTripDesId, ActOutfitDesId, ActNoticeId
+        from final.activity
+        <where>
+            <if test="activityid != null and activityid != ''">
+                and ActivityId = #{activityid}
+            </if>
+            <if test="originatorname != null and originatorname != ''">
+                and OriginatorName = #{originatorname}
+            </if>
+            <if test="actname != null and actname != ''">
+                and ActName = #{actname}
+            </if>
+            <if test="destination != null and destination != ''">
+                and Destination = #{destination}
+            </if>
+            <if test="departplace != null and departplace != ''">
+                and DepartPlace = #{departplace}
+            </if>
+            <if test="starttime != null">
+                and StartTime = #{starttime}
+            </if>
+            <if test="actdays != null">
+                and ActDays = #{actdays}
+            </if>
+            <if test="vehicle != null and vehicle != ''">
+                and Vehicle = #{vehicle}
+            </if>
+            <if test="actspend != null">
+                and ActSpend = #{actspend}
+            </if>
+            <if test="ishotlist != null and ishotlist != ''">
+                and IsHotList = #{ishotlist}
+            </if>
+            <if test="actstate != null and actstate != ''">
+                and ActState = #{actstate}
+            </if>
+            <if test="expectplayer != null">
+                and ExpectPlayer = #{expectplayer}
+            </if>
+            <if test="enlistplayer != null">
+                and EnlistPlayer = #{enlistplayer}
+            </if>
+            <if test="hits != null">
+                and Hits = #{hits}
+            </if>
+            <if test="respond != null">
+                and Respond = #{respond}
+            </if>
+            <if test="ActShowImgName != null and ActShowImgName != ''">
+                and ActShowImgName = #{ActShowImgName}
+            </if>
+            <if test="actdescriptionid != null and actdescriptionid != ''">
+                and ActDescriptionId = #{actdescriptionid}
+            </if>
+            <if test="acttripdesid != null and acttripdesid != ''">
+                and ActTripDesId = #{acttripdesid}
+            </if>
+            <if test="actoutfitdesid != null and actoutfitdesid != ''">
+                and ActOutfitDesId = #{actoutfitdesid}
+            </if>
+            <if test="actnoticeid != null and actnoticeid != ''">
+                and ActNoticeId = #{actnoticeid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into final.activity(ActivityId, OriginatorName, ActName, Destination, DepartPlace, StartTime, ActDays, Vehicle, ActSpend, IsHotList, ActState, ExpectPlayer, EnlistPlayer, Hits, Respond, ActShowImgName, ActDescriptionId, ActTripDesId, ActOutfitDesId, ActNoticeId)
+        values (#{activityid}, #{originatorname}, #{actname}, #{destination}, #{departplace}, #{starttime}, #{actdays}, #{vehicle}, #{actspend}, #{ishotlist}, #{actstate}, #{expectplayer}, #{enlistplayer}, #{hits}, #{respond}, #{ActShowImgName}, #{actdescriptionid}, #{acttripdesid}, #{actoutfitdesid}, #{actnoticeid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update final.activity
+        <set>
+            <if test="originatorname != null and originatorname != ''">
+                OriginatorName = #{originatorname},
+            </if>
+            <if test="actname != null and actname != ''">
+                ActName = #{actname},
+            </if>
+            <if test="destination != null and destination != ''">
+                Destination = #{destination},
+            </if>
+            <if test="departplace != null and departplace != ''">
+                DepartPlace = #{departplace},
+            </if>
+            <if test="starttime != null">
+                StartTime = #{starttime},
+            </if>
+            <if test="actdays != null">
+                ActDays = #{actdays},
+            </if>
+            <if test="vehicle != null and vehicle != ''">
+                Vehicle = #{vehicle},
+            </if>
+            <if test="actspend != null">
+                ActSpend = #{actspend},
+            </if>
+            <if test="ishotlist != null and ishotlist != ''">
+                IsHotList = #{ishotlist},
+            </if>
+            <if test="actstate != null and actstate != ''">
+                ActState = #{actstate},
+            </if>
+            <if test="expectplayer != null">
+                ExpectPlayer = #{expectplayer},
+            </if>
+            <if test="enlistplayer != null">
+                EnlistPlayer = #{enlistplayer},
+            </if>
+            <if test="hits != null">
+                Hits = #{hits},
+            </if>
+            <if test="respond != null">
+                Respond = #{respond},
+            </if>
+            <if test="ActShowImgName != null and ActShowImgName != ''">
+                ActShowImgName = #{ActShowImgName},
+            </if>
+            <if test="actdescriptionid != null and actdescriptionid != ''">
+                ActDescriptionId = #{actdescriptionid},
+            </if>
+            <if test="acttripdesid != null and acttripdesid != ''">
+                ActTripDesId = #{acttripdesid},
+            </if>
+            <if test="actoutfitdesid != null and actoutfitdesid != ''">
+                ActOutfitDesId = #{actoutfitdesid},
+            </if>
+            <if test="actnoticeid != null and actnoticeid != ''">
+                ActNoticeId = #{actnoticeid},
+            </if>
+        </set>
+        where ActivityId = #{activityid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from final.activity where ActivityId = #{activityid}
+    </delete>
+
+    <delete id="deleteByInIds">
+        delete from final.activity where ActivityId IN
+        <foreach collection="list" item="activityid" index="" open="(" close=")" separator=",">
+            #{activityid}
+        </foreach>
+    </delete>
+
+</mapper>

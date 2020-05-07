@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guet.sportsgebe.dao.ArticleDao">
+
+    <resultMap type="com.guet.sportsgebe.entity.Article" id="ArticleMap">
+        <result property="articleid" column="ArticleId" jdbcType="VARCHAR"/>
+        <result property="articlename" column="ArticleName" jdbcType="VARCHAR"/>
+        <result property="publishedtime" column="PublishedTime" jdbcType="TIMESTAMP"/>
+        <result property="articlecate" column="ArticleCate" jdbcType="VARCHAR"/>
+        <result property="articleintro" column="ArticleIntro" jdbcType="VARCHAR"/>
+        <result property="ishotarticle" column="IsHotArticle" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryByIds" resultMap="ArticleMap">
+        select
+          ArticleId, ArticleName, PublishedTime, ArticleCate, ArticleIntro, IsHotArticle
+        from final.article
+        where ArticleId = #{articleid}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ArticleMap">
+        select
+          ArticleId, ArticleName, PublishedTime, ArticleCate, ArticleIntro, IsHotArticle
+        from final.article
+        where ArticleName like concat('%', #{articlename}, '%')
+    </select>
+
+    <select id="queryByIdLike" resultMap="ArticleMap">
+        select
+          ArticleId, ArticleName, PublishedTime, ArticleCate, ArticleIntro, IsHotArticle
+        from final.article
+        where ArticleId like concat('%', #{articleid}, '%')
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ArticleMap">
+        select
+          ArticleId, ArticleName, PublishedTime, ArticleCate, ArticleIntro, IsHotArticle
+        from final.article
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ArticleMap">
+        select
+          ArticleId, ArticleName, PublishedTime, ArticleCate, ArticleIntro, IsHotArticle
+        from final.article
+        <where>
+            <if test="articleid != null and articleid != ''">
+                and ArticleId = #{articleid}
+            </if>
+            <if test="articlename != null and articlename != ''">
+                and ArticleName = #{articlename}
+            </if>
+            <if test="publishedtime != null">
+                and PublishedTime = #{publishedtime}
+            </if>
+            <if test="articlecate != null and articlecate != ''">
+                and ArticleCate = #{articlecate}
+            </if>
+            <if test="articleintro != null and articleintro != ''">
+                and ArticleIntro = #{articleintro}
+            </if>
+            <if test="ishotarticle != null and ishotarticle != ''">
+                and IsHotArticle = #{ishotarticle}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into final.article(ArticleId, ArticleName, PublishedTime, ArticleCate, ArticleIntro, IsHotArticle)
+        values (#{articleid}, #{articlename}, #{publishedtime}, #{articlecate}, #{articleintro}, #{ishotarticle})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update final.article
+        <set>
+            <if test="articlename != null and articlename != ''">
+                ArticleName = #{articlename},
+            </if>
+            <if test="publishedtime != null">
+                PublishedTime = #{publishedtime},
+            </if>
+            <if test="articlecate != null and articlecate != ''">
+                ArticleCate = #{articlecate},
+            </if>
+            <if test="articleintro != null and articleintro != ''">
+                ArticleIntro = #{articleintro},
+            </if>
+            <if test="ishotarticle != null and ishotarticle != ''">
+                IsHotArticle = #{ishotarticle},
+            </if>
+        </set>
+        where ArticleId = #{articleid}
+    </update>
+
+    <update id="updateByName">
+        update final.article
+        <set>
+            <if test="publishedtime != null">
+                PublishedTime = #{publishedtime},
+            </if>
+            <if test="articlecate != null and articlecate != ''">
+                ArticleCate = #{articlecate},
+            </if>
+            <if test="articleintro != null and articleintro != ''">
+                ArticleIntro = #{articleintro},
+            </if>
+            <if test="ishotarticle != null and ishotarticle != ''">
+                IsHotArticle = #{ishotarticle},
+            </if>
+        </set>
+        where ArticleName = #{articlename}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from final.article where ArticleId = #{articleid}
+    </delete>
+
+</mapper>

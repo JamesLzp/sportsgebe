@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guet.sportsgebe.dao.FollowListDao">
+
+    <resultMap type="com.guet.sportsgebe.entity.FollowList" id="FollowListMap">
+        <result property="userid" column="UserId" jdbcType="VARCHAR"/>
+        <result property="followerid" column="FollowerId" jdbcType="VARCHAR"/>
+        <result property="followertime" column="FollowerTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="FollowListMap">
+        select
+          FollowerId
+        from final.follow_list
+        where UserId = #{userid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="FollowListMap">
+        select
+          UserId, FollowerId, FollowerTime
+        from final.follow_list
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="FollowListMap">
+        select
+          UserId, FollowerId, FollowerTime
+        from final.follow_list
+        <where>
+            <if test="userid != null and userid != ''">
+                and UserId = #{userid}
+            </if>
+            <if test="followerid != null and followerid != ''">
+                and FollowerId = #{followerid}
+            </if>
+            <if test="followertime != null">
+                and FollowerTime = #{followertime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into final.follow_list(UserId, FollowerId, FollowerTime)
+        values (#{userid},#{followerid},#{followertime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update final.follow_list
+        <set>
+            <if test="followertime != null">
+                FollowerTime = #{followertime},
+            </if>
+        </set>
+        where UserId = #{userid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from final.follow_list where UserId = #{userid}
+    </delete>
+
+    <delete id="deleteByFollowId">
+        delete from final.follow_list where FollowerId = #{followerId}
+    </delete>
+
+</mapper>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guet.sportsgebe.dao.ActCateDao">
+
+    <resultMap type="com.guet.sportsgebe.entity.ActCate" id="ActCateMap">
+        <result property="actid" column="ActId" jdbcType="VARCHAR"/>
+        <result property="cateid" column="CateId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ActCateMap">
+        select
+          ActId, CateId
+        from final.act_cate
+        where ActId = #{actid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ActCateMap">
+        select
+          ActId, CateId
+        from final.act_cate
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ActCateMap">
+        select
+          ActId, CateId
+        from final.act_cate
+        <where>
+            <if test="actid != null and actid != ''">
+                and ActId = #{actid}
+            </if>
+            <if test="cateid != null and cateid != ''">
+                and CateId = #{cateid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="actid" useGeneratedKeys="true">
+        insert into final.act_cate()
+        values ()
+    </insert>
+
+    <insert id="inserts" parameterType="java.util.ArrayList">
+        insert into final.act_cate(ActId, CateId)
+        values
+        <foreach collection="list" item="item" index="index"  separator=",">
+            (#{item.actid},#{item.cateid})
+        </foreach>
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update final.act_cate
+        <set>
+        </set>
+        where ActId = #{actid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from final.act_cate where ActId = #{actid}
+    </delete>
+
+    <delete id="deleteByInIds">
+        delete from final.act_cate
+        where ActId IN
+        <foreach collection="list" item="actid" index="index"  separator=",">
+            #{actid}
+        </foreach>
+    </delete>
+
+</mapper>

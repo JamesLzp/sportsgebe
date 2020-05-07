@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guet.sportsgebe.dao.UsersDao">
+
+    <resultMap type="com.guet.sportsgebe.entity.Users" id="UsersMap">
+        <result property="userid" column="UserId" jdbcType="VARCHAR"/>
+        <result property="username" column="UserName" jdbcType="VARCHAR"/>
+        <result property="userphotoid" column="UserPhotoId" jdbcType="VARCHAR"/>
+        <result property="userrealname" column="UserRealName" jdbcType="VARCHAR"/>
+        <result property="userpassword" column="UserPassword" jdbcType="VARCHAR"/>
+        <result property="userphone" column="UserPhone" jdbcType="VARCHAR"/>
+        <result property="usermail" column="UserMail" jdbcType="VARCHAR"/>
+        <result property="isadmin" column="IsAdmin" jdbcType="VARCHAR"/>
+        <result property="topactid" column="TopActId" jdbcType="VARCHAR"/>
+        <result property="toparticleid" column="TopArticleId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UsersMap">
+        select
+          UserId, UserName, UserPhotoId, UserRealName, UserPassword, UserPhone, UserMail, IsAdmin, TopActId, TopArticleId
+        from final.users
+        where UserId = #{userid}
+    </select>
+
+    <select id="queryByName" resultMap="UsersMap">
+        select
+          UserId, UserName, UserPhotoId, UserRealName, UserPassword, UserPhone, UserMail, IsAdmin, TopActId, TopArticleId
+        from final.users
+        where UserName = #{username}
+    </select>
+
+    <select id="queryByInIds" resultMap="UsersMap">
+        select
+          UserId, UserName, UserPhotoId, UserRealName, UserPassword, UserPhone, UserMail, IsAdmin, TopActId, TopArticleId
+        from final.users
+        where UserId IN
+        <foreach collection="list" item="userid" index="" open="(" close=")" separator=",">
+            #{userid}
+        </foreach>
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="UsersMap">
+        select
+          UserId, UserName, UserPhotoId, UserRealName, UserPassword, UserPhone, UserMail, IsAdmin, TopActId, TopArticleId
+        from final.users
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="UsersMap">
+        select
+          UserId, UserName, UserPhotoId, UserRealName, UserPassword, UserPhone, UserMail, IsAdmin, TopActId, TopArticleId
+        from final.users
+        <where>
+            <if test="userid != null and userid != ''">
+                and UserId = #{userid}
+            </if>
+            <if test="username != null and username != ''">
+                and UserName = #{username}
+            </if>
+            <if test="userphotoid != null and userphotoid != ''">
+                and UserPhotoId = #{userphotoid}
+            </if>
+            <if test="userrealname != null and userrealname != ''">
+                and UserRealName = #{userrealname}
+            </if>
+            <if test="userpassword != null and userpassword != ''">
+                and UserPassword = #{userpassword}
+            </if>
+            <if test="userphone != null and userphone != ''">
+                and UserPhone = #{userphone}
+            </if>
+            <if test="usermail != null and usermail != ''">
+                and UserMail = #{usermail}
+            </if>
+            <if test="isadmin != null and isadmin != ''">
+                and IsAdmin = #{isadmin}
+            </if>
+            <if test="topactid != null and topactid != ''">
+                and TopActId = #{topactid}
+            </if>
+            <if test="toparticleid != null and toparticleid != ''">
+                and TopArticleId = #{toparticleid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" >
+        insert into final.users(UserId, UserName, UserPhotoId, UserRealName, UserPassword, UserPhone, UserMail, IsAdmin, TopActId, TopArticleId)
+        values (#{userid}, #{username}, #{userphotoid}, #{userrealname}, #{userpassword}, #{userphone}, #{usermail}, #{isadmin}, #{topactid}, #{toparticleid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update final.users
+        <set>
+            <if test="username != null and username != ''">
+                UserName = #{username},
+            </if>
+            <if test="userphotoid != null and userphotoid != ''">
+                UserPhotoId = #{userphotoid},
+            </if>
+            <if test="userrealname != null and userrealname != ''">
+                UserRealName = #{userrealname},
+            </if>
+            <if test="userpassword != null and userpassword != ''">
+                UserPassword = #{userpassword},
+            </if>
+            <if test="userphone != null and userphone != ''">
+                UserPhone = #{userphone},
+            </if>
+            <if test="usermail != null and usermail != ''">
+                UserMail = #{usermail},
+            </if>
+            <if test="isadmin != null and isadmin != ''">
+                IsAdmin = #{isadmin},
+            </if>
+            <if test="topactid != null and topactid != ''">
+                TopActId = #{topactid},
+            </if>
+            <if test="toparticleid != null and toparticleid != ''">
+                TopArticleId = #{toparticleid},
+            </if>
+        </set>
+        where UserId = #{userid}
+    </update>
+
+    <update id="updateTop">
+        update final.users
+        <set>
+            <if test="topactid != null">
+                TopActId = #{topactid},
+            </if>
+            <if test="toparticleid != null">
+                TopArticleId = #{toparticleid},
+            </if>
+        </set>
+        where UserId = #{userid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from final.users where UserId = #{userid}
+    </delete>
+
+</mapper>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="" />
+
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <link href="../css/templatemo_style.css" rel="stylesheet" type="text/css" />
+    <!-- Custom Theme files -->
+    <link href="../css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="../css/style.css" type="text/css" rel="stylesheet" media="all">
+    <!-- font-awesome icons -->
+    <link href="../css/fontawesome-all.min.css" rel="stylesheet">
+    <!-- //Custom Theme files -->
+    <!-- online-fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+    <!-- //online-fonts -->
+
+</head>
+<body>
+<!-- banner -->
+<div class="inner-banner">
+    <!-- header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary pt-3">
+            <h1>
+                <a class="navbar-brand text-white" href="../Users/user">
+                    GebeSports
+                </a>
+            </h1>
+            <button class="navbar-toggler ml-md-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-lg-auto text-center">
+                    <li class="nav-item active  mr-3 mt-lg-0 mt-3">
+                        <a class="nav-link" href="../Users/user">首页
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                        <a class="nav-link" href="../Users/GoAbout">关于这里</a>
+                    </li>
+                    <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                        <a class="nav-link" href="../Users/GoServices">服务</a>
+                    </li>
+                    <li class="nav-item  mr-3 mt-lg-0 mt-3">
+                        <a  class="nav-link" href="../Users/GoArticle">文章</a>
+                    </li>
+                    <li class="nav-item  mr-3 mt-lg-0 mt-3" id="register">
+                        <a id="UserName" class="nav-link" href="../Users/user">登录/注册</a>
+                    </li>
+                    <li class="nav-item  mr-3 mt-lg-0 mt-3" id="logout">
+                        <a  class="nav-link" href="../Users/Logout">注销</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- //header -->
+
+</div>
+<!-- //banner-text -->
+
+<div id="templatemo_main_wrapper">
+    <div id="templatemo_content_wrapper">
+
+        <div id="templatemo_content">
+            <div class="post_section" id="TopArticle">
+                <input type="hidden" name="TopArticleId" id="TopArticleId" value="">
+                <span class="comment"><a href="#">置顶文章</a></span>
+
+                <h2><a href="#" id="ArticleName">Aliquam lorem ante dapibus</a></h2>
+                
+                <strong>Published Date: </strong>
+                <span id="ArticlePublished">2020-04-19</span>
+                <span> | </span>
+                <strong>Author: </strong>
+                <span id="Author">Michael</span>
+
+                <a href="javascript:void(0)" id="Img"><img id="ActImg" src="../images/templatemo_image_01.jpg" alt="image 1" class="testImg"/></a>
+
+                <p id="ArticleIntro">
+                    provides free css templates for your  static or dynamic websites. All web templates are absolutely free to download, modify and apply for your websites without restrictions. Have fun!
+                </p>
+                <div class="cleaner"></div>
+                <div class="button float_r">
+                    <a href="javascript:void(0)" onclick="cancelOnTop()" class="more">取消置顶</a>
+                </div>
+                <div class="cleaner"></div>
+            </div>
+            <div id="ttt">
+
+            </div>
+        </div>
+
+        <div id="templatemo_sidebar_one">
+            <h4>此页面为: </h4>
+            <ul class="templatemo_list">
+                <div class="recent_comment_box">
+                    <a href="javascript:void(0)" id="OwnThis">游客浏览</a>
+                </div>
+            </ul>
+            <div class="cleaner_h40"></div>
+
+            <h4 id="FollowListName">关注列表文章：</h4>
+            <ul class="templatemo_list" id="FollowList">
+
+            </ul>
+
+            <div class="cleaner_h40"></div>
+
+            <h4>功能：</h4>
+            <div class="recent_comment_box">
+                <a href="../Article/GoCreateArticle">写文章/日志</a>
+            </div>
+
+            <div class="recent_comment_box">
+                <a id="OwnOrAll" href="javascript:void(0)" onclick="GetOwnArticle()">我的文章</a>
+            </div>
+        </div>
+
+
+        <div class="cleaner"></div>
+
+        <script src="../js/jquery-2.2.3.min.js"></script>
+        <script src="../js/jquery.cookie.js"></script>
+            <!-- start-smooth-scrolling -->
+        <script src="../js/move-top.js"></script>
+        <script src="../js/easing.js"></script>
+        <script>
+            jQuery(document).ready(function ($) {
+                $(".scroll").click(function (event) {
+                    event.preventDefault();
+    
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 1000);
+                });
+            });
+        </script>
+        <script>
+            function GetOwnArticle(){
+                $.ajax({
+                    url:'/Article/GetOwnArticle',
+					method:'Get',
+					dataType:'json',
+					error:function(){
+						alert("请先登录");
+                        window.location.href = "../Users/user";
+					},
+					success:function(json){
+                        $("#ttt").empty();
+                        ActDes(json, "yes");
+                        $("#OwnOrAll").attr('onclick', 'GetAllArticle()');
+                        $("#OwnOrAll").html("所有文章");
+                        $("#OwnThis").text("我的页面");
+
+                        GetTopArticle(); 
+					}
+                })
+
+                $.getJSON('/Article/GetOwnArticle', function(json){
+                   
+                })
+            }
+
+            function GetAllArticle(){
+                $.getJSON('/Article/GetAllArticle', function(json){
+                    $("#TopArticle").hide();
+                    $("#ttt").empty();
+                    ActDes(json, "no");
+                    $("#OwnOrAll").attr('onclick', 'GetOwnArticle()');
+                    $("#OwnOrAll").html("我的文章");
+                })
+                
+            }
+
+            function GetTopArticle(){
+                $.getJSON("/Article/GetTopArticle", function(json){
+                    if(json == null){
+                        console.log("Top Article is null");
+                        $("#TopArticle").hide();
+                    }else{
+                        $("#TopArticleId").val(json.articleid);
+                        $("#ArticleName").html(json.articlename);
+                        $("#ArticleName").attr('href', '../Article/GoShowArticle?ArticleId='+json.articleid);
+                        $("#ArticlePublished").html(timestampToTime(json.publishedtime));
+                        $("#Author").html(sliceStr(json.articleid));
+                        $("#ArticleIntro").html(json.articleintro);
+
+                        $("#TopArticle").show();
+                    }
+                })
+            }
+
+            function timestampToTime(timestamp) {
+                var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+                Y = date.getFullYear() + '-';
+                M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+                D = date.getDate() + ' ';
+                h = date.getHours() + ':';
+                m = date.getMinutes() + ':';    
+                s = date.getSeconds();
+                return Y+M+D+h+m+s;
+            }
+
+            function IsHot(ishot){
+                if(ishot == "yes"){
+                    return "Hot";
+                }else{
+                    return "Nomal";
+                }
+            }
+
+            function sliceStr(str){
+                return str.slice(0, str.length-7);
+            }
+
+            function setOnTop(articleId){
+                $.ajax({
+                    url:'/Users/SetOnTop',
+					data:{"ArticleId":articleId},
+					method:'POST',
+					dataType:'text',
+					error:function(){
+						alert("无法连接服务器");
+					},
+					success:function(data){
+
+						GetOwnArticle();
+					}
+                })
+            }
+
+            function cancelOnTop(){
+                $.ajax({
+                    url:'/Users/CancelOnTop?Article=yes',
+					method:'Get',
+					dataType:'text',
+					error:function(){
+						alert("无法连接服务器");
+					},
+					success:function(data){
+						GetOwnArticle();
+					}
+                })
+            }
+
+            function GetIntro(ActId){
+                $.getJSON("/Article/GetIntro?ActId=" + ActId, function(data){
+                    $("#ActIntro").html(data.articleintro);
+                })
+            }
+
+            function deleteAct(ActId, no){
+                $.get("/Activity/DeleteAct?ActId-" + ActId, function(data){
+                    if(data == "Success"){
+                        $('#'+ no +'').remove();
+                    }
+                })
+            }
+
+            function ActDes(json, IsOwn){
+                $.each(json, function (index, obj) {
+                                
+                    // var div2 = $('<div class="category">').append('<span>Categorys:</span> ');
+
+                    // $.getJSON("/Article/GetLinkAct?ArticleId=" + obj.articleid, function(data){
+                    //     div2.append('<a href="#">'+ Cate.catename +' </a>');
+                    // })
+
+                    var div3 = $('<div id="Act'+ index +'" class="post_section">').append('<input type="hidden" name="ArticleId" value="'+ obj.articleid +'"><span class="comment"><a href="javascript:void(0)">'+ IsHot(obj.ishotarticle) +'</a></span>');
+                    div3.append('<h2><a href="../Article/GoShowArticle?ArticleId='+ obj.articleid +'">'+ obj.articlename +'</a></h2>');
+                    div3.append('<strong>Published Date: </strong><span">'+ timestampToTime(obj.publishedtime) +'</span><span> | </span><strong>Author: </strong><span>'+ sliceStr(obj.articleid) +'</span>');
+                    div3.append('<a href="javascript:void(0)" id="Img"><img id="ActImg" src="../images/templatemo_image_01.jpg" alt="image 1" class="testImg"/></a>');
+                    div3.append('<p>'+ obj.articleintro + '</p>');
+
+                    div3.append('<div class="cleaner"></div>');
+                    if(IsOwn == "yes"){
+                        var div1 = $('<div class="button float_r">').append('<a href="javascript:void(0)" onclick=\'setOnTop("'+ obj.articleid.toUpperCase() +'")\' class="more">设为置顶</a>');   
+                        div3.append(div1);
+                        div3.append('<div class="cleaner"></div>');
+                    }
+    
+                    $("#ttt").append(div3);
+                })
+            }
+
+            function GoPerson(userId){
+                window.location.href = "../Article/GoOtherArticle?UserId=" + userId;
+            }
+
+            function deleteFollow(userId){
+                $.ajax({
+                    url:'/Users/DeleteFollow',
+                    data:{"UserId": userId},
+                    method:'POST',
+                    dataType:'text',
+                    error:function(){
+                        alert("无法连接服务器");
+                    },
+                    success:function(data){
+                        if(data == "Success"){
+                            window.location.href = "../Users/GoArticle";
+                        }
+                    }
+                })
+            }
+
+            $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear' 
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+            //取得cookie里的值，如果为空则不操作；若有值，则隐藏登录框
+            var userName = $.cookie('userName');
+            var userPassword = $.cookie('userPassword');
+            if(userName != null && userPassword != null){
+                $.ajax({
+                    url:'/Users/CheckLogin',
+                    data:{"Name":userName,"Password":userPassword},
+                    method:'POST',
+                    dataType:'text',
+                    error:function(){
+                        alert("无法连接服务器");
+                    },
+                    success:function(data){
+                        if(data == "LoginSuccess"){
+                            $("#UserName").text($.cookie('userName'));
+                            $("#OwnThis").text("我的页面");
+                        }else{
+                            $("#logout").hide();
+                            $("#FollowListName").hide();
+                        }
+                    }
+                });
+            }else{
+                $("#FollowListName").hide(); 
+            }   
+                        
+            $.getJSON("/Article/GetAllArticle", function (json) {
+                if(json.art != null){
+                    $("#OwnThis").text(json.otherName);
+                    $("#TopArticle").hide();
+                    ActDes(json.art, "no");
+                    console.log("Other init!!");       
+                }else{
+                    $("#TopArticle").hide();
+                    ActDes(json, "no");
+                    console.log("init!!");
+                }
+                
+            })
+
+            // $.get("/Users/GetUserImg", function(Img){
+            //     $("#UserImg").attr('src', '../images/' + Img);
+            // })
+
+            $.getJSON("/Users/GetFollowList", function(json){
+                if(json != null){
+                    $("#FollowListName").show();
+                    $.each(json, function(index, obj){
+                        $("#FollowList").append('<li><a href="javascript:void(0)"><i onclick=\'deleteFollow("'+ obj.userid.toUpperCase() +'")\' class="fa fa-minus-circle fa-lg" aria-hidden="true"></i> <input type="button" onclick=\'GoPerson("'+ obj.userid.toUpperCase() +'")\' value="'+ obj.username +'"/></a></li>')
+                    })
+                }
+            })
+        });
+
+        $(window).load(function(){  
+            console.log("window.load"); 
+        })
+        </script>
+        
+
+</body>
+
+</html>
